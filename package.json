@@ -1,0 +1,22 @@
+{
+  "name": "inicializar-gulp",
+  "version": "0.0.1",
+  "description": "inicializar con gulp",
+  "main": "gulpfile.js",
+  "author": "Luis Gago Casas",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "*",
+    "gulp": "*",
+    "gulp-cached": "*",
+    "gulp-changed": "*",
+    "gulp-concat": "*",
+    "gulp-filter": "*",
+    "gulp-if": "*",
+    "gulp-jade": "*",
+    "gulp-jade-inheritance": "*",
+    "gulp-stylus": "*",
+    "gulp-uglify": "*",
+    "nib": "*"
+  }
+}
