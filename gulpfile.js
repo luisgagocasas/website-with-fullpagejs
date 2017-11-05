@@ -1,11 +1,12 @@
 'use strict';
+
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
     stylus = require('gulp-stylus'),
     nib = require('nib'),
-    pug = require('gulp-pug'),
-    pugInheritance = require('gulp-pug-inheritance'),
+    jade = require('gulp-jade'),
+    jadeInheritance = require('gulp-jade-inheritance'),
     changed = require('gulp-changed'),
     cached = require('gulp-cached'),
     gulpif = require('gulp-if'),
@@ -13,16 +14,16 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
-gulp.task('pug', function(){
-  //, '!pug/componentes/base.pug'
-  gulp.src(['pug/**/*.pug'])
+gulp.task('jade', function(){
+  //, '!jade/componentes/base.jade'
+  gulp.src(['jade/**/*.jade'])
   .pipe(changed('www/', {extension: '.html'}))
-  .pipe(gulpif(global.isWatching, cached('pug')))
-  .pipe(pugInheritance({basedir: 'pug'}))
+  .pipe(gulpif(global.isWatching, cached('jade')))
+  .pipe(jadeInheritance({basedir: 'jade'}))
   .pipe(filter(function (file) {
     return !/\/_/.test(file.path) && !/^_/.test(file.relative);
   }))
-  .pipe(pug({pretty: true}))
+  .pipe(jade({pretty: true}))
   .on('error', console.log.bind(console))
   .pipe(gulp.dest('www/'))
   .pipe(reload({stream: true}));
@@ -87,9 +88,9 @@ gulp.task('browserSync', function(done){
     open: "ui",
     //browser: ["google-chrome-stable", "firefox"]
   });
-  gulp.watch('pug/**/*.pug', ['pug']);
+  gulp.watch('jade/**/*.jade', ['jade']);
   gulp.watch('stylus/**/*.styl', ['stylus']);
   gulp.watch('javascript/**/*.js', ['javascript']);
 });
 
-gulp.task('default', ['setWatch', 'pug', 'stylus', 'javascript', 'browserSync'])
+gulp.task('default', ['setWatch', 'jade', 'stylus', 'javascript', 'browserSync'])
